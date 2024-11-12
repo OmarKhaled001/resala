@@ -5,7 +5,6 @@ namespace App\Filament\Widgets;
 use App\Models\Activity;
 use App\Models\Branch;
 use App\Models\Section;
-use App\Models\Category;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
