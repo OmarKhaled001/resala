@@ -4,16 +4,16 @@ namespace App\Filament\Resources\ActivityResource\Pages;
 
 use App\Filament\Resources\ActivityResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ListRecords;
 
-class EditActivity extends EditRecord
+class ListActivities extends ListRecords
 {
     protected static string $resource = ActivityResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\CreateAction::make()->label('إضافة نشاط'),
         ];
     }
 }

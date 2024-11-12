@@ -9,9 +9,4 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateActivity extends CreateRecord
 {
     protected static string $resource = ActivityResource::class;
-
-    public function getTitle(): string 
-    {
-        return 'إضافة نشاط';
-    }
 }
