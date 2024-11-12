@@ -4,32 +4,27 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Branche;
+use App\Models\Section;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\BrancheResource\Pages;
+use App\Filament\Resources\SectionResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\BrancheResource\RelationManagers;
+use App\Filament\Resources\SectionResource\RelationManagers;
 
-class BrancheResource extends Resource
+class SectionResource extends Resource
 {
-    protected static ?string $model = Branche::class;
+    protected static ?string $model = Section::class;
     protected static ?string $navigationGroup = 'الهيكل';
-    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
-    protected static ?string $navigationLabel = 'الفروع';
-    protected static ?string $pluralModelLabel  = 'الفروع';
-    protected static ?int $navigationSort = 1;
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
 
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
+    protected static ?string $navigationLabel = 'الأنشطة';
+    protected static ?string $pluralModelLabel  = 'الأنشطة';
+    protected static ?int $navigationSort = 2;
     public static function form(Form $form): Form
     {
         return $form
@@ -37,21 +32,27 @@ class BrancheResource extends Resource
                 TextInput::make('name')
                 ->label('الاسم')
                 ->columnSpan(2)
+                ->required()
                 ->required(),
                 TextInput::make('email')
                 ->label('البريد الالكتروني')
                 ->columnSpan(2)
+                ->required()
                 ->required(),
+                TextInput::make('password')
+                ->password()
+                ->label('كلمة المرور')
+                ->columnSpan(2)
+                ->revealable(),
                 Select::make('section_id')
                 ->relationship('sections','name')
-                ->label('أسم النشاط')
-                ->placeholder('اختر الانشطة المفعلة بالفرع')
+                ->label('أسم اللجان')
+                ->placeholder('اختر اللجان المفعلة بالنشاط')
                 ->searchable(['name'])
                 ->multiple()
                 ->preload()
                 ->columnSpan(2)
                 ->required(),
-              
             ]);
     }
 
@@ -60,14 +61,13 @@ class BrancheResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                ->searchable()
                 ->label('الاسم'),
                 TextColumn::make('email')
+                ->copyable()
                 ->label('البريد الالكتروني'),
                 TextColumn::make('sections_count')
                 ->counts('sections')
-                ->label('عدد الانشطة'),
-         
+                ->label('عدد اللجان'),
             ])
             ->filters([
                 //
@@ -75,7 +75,6 @@ class BrancheResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make()->label(false),
                 Tables\Actions\ViewAction::make()->label(false),
-
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -94,9 +93,9 @@ class BrancheResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBranches::route('/'),
-            'create' => Pages\CreateBranche::route('/create'),
-            'edit' => Pages\EditBranche::route('/{record}/edit'),
+            'index' => Pages\ListSections::route('/'),
+            'create' => Pages\CreateSection::route('/create'),
+            'edit' => Pages\EditSection::route('/{record}/edit'),
         ];
     }
 }

@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('branche_section', function (Blueprint $table) {
+        Schema::create('activity_section', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->nullable()
+            $table->foreignId('activity_id')
+            ->nullable()
+            ->references('id')
+            ->on('activities')
+            ->cascadeOnDelete();
+            $table->foreignId('section_id')
+            ->nullable()
             ->references('id')
             ->on('sections')
-            ->onDelete('set null');
-            $table->foreignId('branche_id')->nullable()
-            ->references('id')
-            ->on('branches')
             ->cascadeOnDelete();
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('branche_section');
+        Schema::dropIfExists('activity_section');
     }
 };

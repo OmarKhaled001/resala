@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Branche extends Model
+class Activity extends Model
 {
     use HasFactory;
 
-    protected $table = 'branches';
+    protected $table = 'activities';
     
     public $timestamps = true;
 
@@ -28,12 +28,17 @@ class Branche extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function sections()
+
+    public function branches()
     { 
-        return $this->belongsToMany(Section::class ,'branche_section')->withTimestamps(); 
+        return $this->belongsToMany(Branch::class ,'branch_activity')->withTimestamps(); 
     }
 
+    public function categories()
+    { 
+        return $this->belongsToMany(Section::class ,'activity_section')->withTimestamps(); 
+    }
+    
     function volunteers()
     {
         return $this->hasMany(Volunteer::class);

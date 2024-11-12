@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\BrancheResource\Pages;
+namespace App\Filament\Resources\SectionResource\Pages;
 
-use App\Filament\Resources\BrancheResource;
+use App\Filament\Resources\SectionResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditBranche extends EditRecord
+class EditSection extends EditRecord
 {
-    protected static string $resource = BrancheResource::class;
+    protected static string $resource = SectionResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -19,6 +19,6 @@ class EditBranche extends EditRecord
 
     public function getTitle(): string 
     {
-        return 'تعديل الفرع';
+        return 'تعديل نشاط';
     }
 }

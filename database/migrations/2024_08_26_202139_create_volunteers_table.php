@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('volunteers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('branche_id')
+            $table->foreignId('branch_id')
             ->nullable()
             ->references('id')
             ->on('branches')
@@ -23,25 +23,25 @@ return new class extends Migration
             ->references('id')
             ->on('sections')
             ->cascadeOnDelete();
-            $table->foreignId('category_id')
+            $table->foreignId('activity_id')
             ->nullable()
             ->references('id')
-            ->on('categories')
+            ->on('activities')
             ->onDelete('set null');
             $table->string('name');
             $table->string('phone');
             $table->string('gender');
-            $table->date('birthdate')->nullable();
-            $table->date('voldate')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->date('vol_date')->nullable();
             $table->string('address')->nullable();
             $table->string('status')->nullable();
             $table->string('type')->nullable();
-            $table->string('email')->nullable()->unique();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('notes')->nullable();
-            $table->boolean('ashbal')->nullable();
-            $table->boolean('tshirt')->nullable();
-            $table->boolean('meni_camp')->nullable();
+            $table->boolean('t-shirt')->nullable();
+            $table->boolean('mine_camp')->nullable();
             $table->boolean('camp_48')->nullable();
             $table->timestamps();
         });

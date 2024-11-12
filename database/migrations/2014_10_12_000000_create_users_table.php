@@ -14,18 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone')
-            ->unique();
-            $table->foreignId('branche_id')
-            ->nullable()
-            ->references('id')
-            ->on('branches')
-            ->cascadeOnDelete();
-            $table->foreignId('section_id')
-            ->nullable()
-            ->references('id')
-            ->on('sections')
-            ->cascadeOnDelete();
+            $table->string('phone')->nullable()->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

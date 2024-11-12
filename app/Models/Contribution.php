@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Type extends Model
+class Contribution extends Model
 {
     use HasFactory;
     
-    protected $table = 'types';
+    protected $table = 'contributions';
     
     public $timestamps = true;
 
@@ -24,8 +24,8 @@ class Type extends Model
         'is_active' => 'boolean',
     ];
     
-    public function categories()
+    public function sections()
     { 
-        return $this->belongsToMany(Category::class ,'category_type')->withTimestamps(); 
+        return $this->belongsToMany(Section::class ,'section_contribution')->withTimestamps(); 
     }
 }

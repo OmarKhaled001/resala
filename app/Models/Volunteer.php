@@ -16,29 +16,27 @@ class Volunteer extends Model
     protected $fillable = [
         'name',
         'notes',
-        'branche_id',
+        'branch_id',
         'section_id',
-        'category_id',
+        'activity_id',
         'phone',
         'gender',
-        'birthdate',
-        'voldate',
+        'birth_date',
+        'vol_date',
         'address',
         'status',
         'type',
         'email',
         'password',
-        'ashbal',
-        'tshirt',
-        'meni_camp',
+        't-shirt',
+        'mine_camp',
         'camp_48',
     
     ];
 
     protected $casts = [
-        'ashbal' => 'boolean',
-        'tshirt' => 'boolean',
-        'meni_camp' => 'boolean',
+        't-shirt' => 'boolean',
+        'mine_camp' => 'boolean',
         'camp_48' => 'boolean',
         'email_verified_at' => 'datetime',
 
@@ -55,13 +53,13 @@ class Volunteer extends Model
         return $this->belongsTo(Section::class); 
     }
     
-    public function branche()
+    public function branch()
     { 
-        return $this->belongsTo(Branche::class); 
+        return $this->belongsTo(Branch::class); 
     }
     
-    public function category()
+    public function activity()
     { 
-        return $this->belongsTo(Category::class); 
+        return $this->belongsTo(Activity::class); 
     }
 }

@@ -5,26 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Branch extends Model
 {
     use HasFactory;
-    
-    protected $table = 'sections';
+
+    protected $table = 'branches';
     
     public $timestamps = true;
 
     protected $fillable = [
         'name',
+        'phone',
         'email',
-        'description',
-        'is_active',
+        'password',
     
-    ];
-
-    protected $casts = [
-        'is_active' => 'boolean',
-        'email_verified_at' => 'datetime',
-
     ];
 
     protected $hidden = [
@@ -32,18 +26,15 @@ class Section extends Model
         'remember_token',
     ];
 
-  
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
     
     public function activities()
     { 
-        return $this->belongsToMany(Activity::class ,'activity_section')->withTimestamps(); 
+        return $this->belongsToMany(Activity::class ,'branch_activity')->withTimestamps(); 
     }
 
-    public function contributions()
-    { 
-        return $this->belongsToMany(Contribution::class ,'section_contribution')->withTimestamps(); 
-    }
-    
     function volunteers()
     {
         return $this->hasMany(Volunteer::class);
