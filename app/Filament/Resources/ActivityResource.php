@@ -12,11 +12,11 @@ use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\SectionResource\Pages;
+use App\Filament\Resources\ActivityResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SectionResource\RelationManagers;
+use App\Filament\Resources\ActivityResource\RelationManagers;
 
-class SectionResource extends Resource
+class ActivityResource extends Resource
 {
     protected static ?string $model = Section::class;
     protected static ?string $navigationGroup = 'الهيكل';
@@ -93,9 +93,9 @@ class SectionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSections::route('/'),
-            'create' => Pages\CreateSection::route('/create'),
-            'edit' => Pages\EditSection::route('/{record}/edit'),
+            'index' => Pages\ListActivities::route('/'),
+            'create' => Pages\CreateActivity::route('/create'),
+            'edit' => Pages\EditActivity::route('/{record}/edit'),
         ];
     }
 }

@@ -4,21 +4,16 @@ namespace App\Filament\Resources\SectionResource\Pages;
 
 use App\Filament\Resources\SectionResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ListRecords;
 
-class EditSection extends EditRecord
+class ListSections extends ListRecords
 {
     protected static string $resource = SectionResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\CreateAction::make()->label('إضافة لجنة'),
         ];
-    }
-    
-    public function getTitle(): string 
-    {
-        return 'تعديل النشاط';
     }
 }
