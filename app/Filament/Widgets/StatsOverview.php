@@ -2,24 +2,25 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Branche;
-use App\Models\Category;
+use App\Models\Activity;
+use App\Models\Branch;
 use App\Models\Section;
-use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use App\Models\Category;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class StatsOverview extends BaseWidget
 {
     protected function getStats(): array
     {
         return [
-            Stat::make('الفروع', Branche::count())
+            Stat::make('الفروع', Branch::count())
             ->description('عدد الفروع الحالية')
             ->color('success'),
-            Stat::make('الأنشطة', Section::count())
+            Stat::make('الأنشطة', Activity::count())
             ->description('عدد الأنشطة المفعلة ')
             ->color('success'),
-            Stat::make('اللجان', Category::where('is_active',1)->count())
+            Stat::make('اللجان', Section::where('is_active',1)->count())
             ->description('عدد اللجان المفعلة')
             ->color('success'),
             
